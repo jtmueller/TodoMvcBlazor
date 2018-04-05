@@ -3,28 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27520.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TodoMvcBlazor", "TodoMvcBlazor\TodoMvcBlazor.csproj", "{3B79ED19-BF58-4208-843D-910AB39038B9}"
-EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "todomvc-app-template-master", "..\todomvc-app-template-master\", "{A5E855DA-B76C-4144-B36A-CE34EB9F21F4}"
-	ProjectSection(WebsiteProperties) = preProject
-		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
-		Debug.AspNetCompiler.VirtualPath = "/localhost_25789"
-		Debug.AspNetCompiler.PhysicalPath = "..\todomvc-app-template-master\"
-		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_25789\"
-		Debug.AspNetCompiler.Updateable = "true"
-		Debug.AspNetCompiler.ForceOverwrite = "true"
-		Debug.AspNetCompiler.FixedNames = "false"
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.VirtualPath = "/localhost_25789"
-		Release.AspNetCompiler.PhysicalPath = "..\todomvc-app-template-master\"
-		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_25789\"
-		Release.AspNetCompiler.Updateable = "true"
-		Release.AspNetCompiler.ForceOverwrite = "true"
-		Release.AspNetCompiler.FixedNames = "false"
-		Release.AspNetCompiler.Debug = "False"
-		VWDPort = "25789"
-		SlnRelativePath = "..\todomvc-app-template-master\"
-	EndProjectSection
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TodoMvcBlazor", "TodoMvcBlazor\TodoMvcBlazor.csproj", "{3B79ED19-BF58-4208-843D-910AB39038B9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -36,10 +15,6 @@ Global
 		{3B79ED19-BF58-4208-843D-910AB39038B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3B79ED19-BF58-4208-843D-910AB39038B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3B79ED19-BF58-4208-843D-910AB39038B9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A5E855DA-B76C-4144-B36A-CE34EB9F21F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A5E855DA-B76C-4144-B36A-CE34EB9F21F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A5E855DA-B76C-4144-B36A-CE34EB9F21F4}.Release|Any CPU.ActiveCfg = Debug|Any CPU
-		{A5E855DA-B76C-4144-B36A-CE34EB9F21F4}.Release|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

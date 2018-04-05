@@ -1,15 +1,16 @@
 ﻿@implements ILayoutComponent
 
-<div class='container-fluid'>
-    <div class='row'>
-        <div class='col-sm-3'>
-            <NavMenu />
-        </div>
-        <div class='col-sm-9'>
-            @Body
-        </div>
-    </div>
-</div>
+<section class="todoapp">
+    @Body
+</section>
+<footer class="info">
+    <p>Double-click to edit a todo</p>
+    <!-- Remove the below line ↓ -->
+    <p>Template by <a href="http://sindresorhus.com">Sindre Sorhus</a></p>
+    <!-- Change this out with your name and url ↓ -->
+    <p>Created by <a href="http://todomvc.com">you</a></p>
+    <p>Part of <a href="http://todomvc.com">TodoMVC</a></p>
+</footer>
 
 @functions {
     public RenderFragment Body { get; set; }

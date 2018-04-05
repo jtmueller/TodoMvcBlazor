@@ -13,4 +13,30 @@
     <DotNetCliToolReference Include="Microsoft.AspNetCore.Blazor.Cli" Version="0.1.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <BlazorGenerate Remove="Shared\TodoList.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="Shared\TodoList.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Shared\TodoFooter.cshtml" />
+    <None Include="Shared\TodoInput.cshtml" />
+    <None Include="Shared\TodoList.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <BlazorGenerate Remove="Shared\TodoInput.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="Shared\TodoInput.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <BlazorGenerate Remove="Shared\TodoFooter.cshtml" />
+  </ItemGroup>
+
 </Project>
