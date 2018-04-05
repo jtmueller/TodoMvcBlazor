@@ -1,19 +1,54 @@
-﻿<!-- This footer should hidden by default and shown when there are todos -->
-<footer class="footer">
-    <!-- This should be `0 items left` by default -->
-    <span class="todo-count"><strong>0</strong> item left</span>
-    <!-- Remove this if you don't implement routing -->
-    <ul class="filters">
-        <li>
-            <a class="selected" href="#/">All</a>
-        </li>
-        <li>
-            <a href="#/active">Active</a>
-        </li>
-        <li>
-            <a href="#/completed">Completed</a>
-        </li>
-    </ul>
-    <!-- Hidden if no completed items are left ↓ -->
-    <button class="clear-completed">Clear completed</button>
-</footer>
+﻿@if (Todos.Count > 0) {
+    var pendingCount = Todos.Count(t => !t.Completed);
+    <footer class="footer">
+        <span class="todo-count"><strong>@pendingCount</strong> @(pendingCount == 1 ? "item" : "items") left</span>
+        <!-- TODO: routing for filtering. NavLink? How to maintain state when switching pages? -->
+        <!--
+        <ul class="filters">
+            <li>
+                <a class="selected" href="#/">All</a>
+            </li>
+            <li>
+                <a href="#/active">Active</a>
+            </li>
+            <li>
+                <a href="#/completed">Completed</a>
+            </li>
+        </ul>
+        -->
+        @if (Todos.Any(t => t.Completed)) {
+            <button class="clear-completed" @onclick(ClearCompleted)>Clear completed</button>
+        }
+    </footer>
+}
+
+@functions {
+    public ObservableCollection<Todo> Todos { get; set; }
+
+    private void ClearCompleted()
+    {
+        var completed = Todos.Where(t => t.Completed).ToArray();
+        
+        foreach (var todo in completed)
+        {
+            Todos.Remove(todo);
+        }
+    }
+
+    protected override void OnParametersSet()
+    {
+        // update the count when the collection changes
+        Todos.CollectionChanged += (s,e) => 
+        {
+            foreach (var todo in Todos)
+            {
+                // ensure we update if any item changes, and that we're only subscribed once
+                todo.PropertyChanged -= OnItemChanged;
+                todo.PropertyChanged += OnItemChanged;
+            }
+            this.StateHasChanged();
+        };
+    }
+
+    private void OnItemChanged(object sender, PropertyChangedEventArgs e) => this.StateHasChanged();
+}

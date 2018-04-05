@@ -1,5 +1,14 @@
 ﻿@page "/"
 
-<TodoInput />
-<TodoList/>
-<TodoFooter />
+<TodoInput OnNewTodo=@AddTodo />
+<TodoList Todos=@Todos />
+<TodoFooter Todos=@Todos />
+
+@functions {
+    private ObservableCollection<Todo> Todos { get; } = new ObservableCollection<Todo>();
+
+    private void AddTodo(string text)
+    {
+        Todos.Add(new Todo { Text = text });
+    }
+}
