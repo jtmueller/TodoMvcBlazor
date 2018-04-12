@@ -4,7 +4,7 @@
         <span class="todo-count"><strong>@pendingCount</strong> @(pendingCount == 1 ? "item" : "items") left</span>
         <ul class="filters">
             <li>
-                <a class=@SelectedClass() href="/all">All</a>
+                <a class=@SelectedClass("all") href="/all">All</a>
             </li>
             <li>
                 <a class=@SelectedClass("active") href="/active">Active</a>
@@ -22,15 +22,15 @@
 @functions {
     public ObservableCollection<Todo> Todos { get; set; }
 
-    public string Filter { get; set; }
-
-    private string SelectedClass(string selection = null)
+    private string _filter;
+    public string Filter
     {
-        if (selection == null)
-            return string.IsNullOrEmpty(Filter) || Filter == "all" ? "selected" : "";
-        
-        return selection == Filter ? "selected" : "";
+        set => _filter = value;
+        get => string.IsNullOrEmpty(_filter) ? "all" : _filter;
     }
+
+    private string SelectedClass(string selection) => 
+        selection == Filter ? "selected" : "";
 
     private void ClearCompleted()
     {
