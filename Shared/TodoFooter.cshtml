@@ -2,20 +2,17 @@
     var pendingCount = Todos.Count(t => !t.Completed);
     <footer class="footer">
         <span class="todo-count"><strong>@pendingCount</strong> @(pendingCount == 1 ? "item" : "items") left</span>
-        <!-- TODO: routing for filtering. NavLink? How to maintain state when switching pages? -->
-        <!--
         <ul class="filters">
             <li>
-                <a class="selected" href="#/">All</a>
+                <a class=@SelectedClass() href="/all">All</a>
             </li>
             <li>
-                <a href="#/active">Active</a>
+                <a class=@SelectedClass("active") href="/active">Active</a>
             </li>
             <li>
-                <a href="#/completed">Completed</a>
+                <a class=@SelectedClass("completed") href="/completed">Completed</a>
             </li>
         </ul>
-        -->
         @if (Todos.Any(t => t.Completed)) {
             <button class="clear-completed" @onclick(ClearCompleted)>Clear completed</button>
         }
@@ -24,6 +21,16 @@
 
 @functions {
     public ObservableCollection<Todo> Todos { get; set; }
+
+    public string Filter { get; set; }
+
+    private string SelectedClass(string selection = null)
+    {
+        if (selection == null)
+            return string.IsNullOrEmpty(Filter) || Filter == "all" ? "selected" : "";
+        
+        return selection == Filter ? "selected" : "";
+    }
 
     private void ClearCompleted()
     {

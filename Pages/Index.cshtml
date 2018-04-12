@@ -1,14 +1,22 @@
 ﻿@page "/"
+@page "/{Filter}"
 
 <TodoInput OnNewTodo=@AddTodo />
-<TodoList Todos=@Todos />
-<TodoFooter Todos=@Todos />
+<TodoList Todos=@Todos Filter=@Filter />
+<TodoFooter Todos=@Todos Filter=@Filter />
 
 @functions {
     private ObservableCollection<Todo> Todos { get; } = new ObservableCollection<Todo>();
 
+    public string Filter { get; set; }
+
     private void AddTodo(string text)
     {
         Todos.Add(new Todo { Text = text });
+    }
+
+    protected override void OnInit()
+    {
+        Console.WriteLine(Filter);
     }
 }
