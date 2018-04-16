@@ -4,13 +4,13 @@
         <span class="todo-count"><strong>@pendingCount</strong> @(pendingCount == 1 ? "item" : "items") left</span>
         <ul class="filters">
             <li>
-                <a class=@SelectedClass("all") href="/all">All</a>
+                <a class=@SelectedClass("all") href="all">All</a>
             </li>
             <li>
-                <a class=@SelectedClass("active") href="/active">Active</a>
+                <a class=@SelectedClass("active") href="active">Active</a>
             </li>
             <li>
-                <a class=@SelectedClass("completed") href="/completed">Completed</a>
+                <a class=@SelectedClass("completed") href="completed">Completed</a>
             </li>
         </ul>
         @if (Todos.Any(t => t.Completed)) {
