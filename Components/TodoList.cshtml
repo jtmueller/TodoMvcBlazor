@@ -5,10 +5,10 @@
         <ul class="todo-list">
             <!-- List items should get the class `editing` when editing and `completed` when marked as completed -->
             @foreach (var (todo, i) in FilteredTodos.WithIndex()) {
-                <li class=@GetClass(todo) @onclick(() => ItemClick(todo))>
+                <li class=@GetClass(todo)>
                     <div class="view">
                         <input id=@("todo" + i) class="toggle" type="checkbox" @bind(todo.Completed)>
-                        <label for=@("todo" + i)>@todo.Text</label>
+                        <label for=@("todo" + i) @onclick(() => ItemClick(todo))>@todo.Text</label>
                         <button class="destroy" @onclick(() => State.RemoveTodo(todo))></button>
                     </div>
                     <input class="edit" value=@todo.Text @onchange(v => SaveEdit((string)v))>
@@ -39,15 +39,13 @@
 
     private string GetClass(Todo todo)
     {
-        var sb = new System.Text.StringBuilder();
-        
-        if (todo.Completed)
-            sb.Append("completed ");
-
         if (ReferenceEquals(todo, _editing))
-            sb.Append("editing ");
+            return "editing";
 
-        return sb.ToString();
+        if (todo.Completed)
+            return "completed";
+
+        return string.Empty;
     }
 
     private DateTime _lastClick = DateTime.MinValue;
@@ -55,12 +53,14 @@
 
     private void ItemClick(Todo todo)
     {
+        // toggle (in case this is a single click)
+        todo.Completed = !todo.Completed;
+
         var now = DateTime.UtcNow;
         if ((now - _lastClick).TotalMilliseconds < 500)
         {
             // it's a double-click
             _editing = todo;
-            StateHasChanged();
         }
         _lastClick = now;
     }
