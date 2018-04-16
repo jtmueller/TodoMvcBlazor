@@ -22,8 +22,13 @@
 
 ## Implementation
 
-How was the app created? Anything worth sharing about the process of creating the app? Any spec violations?
+Because the 0.1 preview of Blazor only supports onclick and onchange events, I had to use onchange
+for creating/editing items. That means that when creating a new task, it will be added when the text field
+loses focus, even if you didn't hit Enter. Similarly, when editing a task, if you don't change anything 
+you can't leave edit mode (Enter doesn't trigger onchange if there are no changes). 
+These bugs can be fixed after upgrading to an as-yet-unreleased version of Blazor.
 
+Access to localStorage is currently through javascript interop.
 
 ## Credit
 
