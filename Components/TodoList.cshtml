@@ -1,6 +1,6 @@
-﻿@if (Todos.Count > 0) {
+﻿@if (State.Todos.Count > 0) {
     <section class="main">
-        <input id="toggle-all" class="toggle-all" type="checkbox" @onchange(v => ToggleAll((bool)v))>
+        <input id="toggle-all" class="toggle-all" type="checkbox" @onchange(v => State.ToggleAll((bool)v))>
         <label for="toggle-all">Toggle All</label>
         <ul class="todo-list">
             <!-- List items should get the class `editing` when editing and `completed` when marked as completed -->
@@ -9,7 +9,7 @@
                     <div class="view">
                         <input id=@("todo" + i) class="toggle" type="checkbox" @bind(todo.Completed)>
                         <label for=@("todo" + i)>@todo.Text</label>
-                        <button class="destroy" @onclick(() => Remove(todo))></button>
+                        <button class="destroy" @onclick(() => State.RemoveTodo(todo))></button>
                     </div>
                     <input class="edit" @bind(todo.Text)>
                 </li>
@@ -19,39 +19,24 @@
 }
 
 @functions {
-    public ObservableCollection<Todo> Todos { get; set; }
+    public AppState State { get; set; }
 
     public IEnumerable<Todo> FilteredTodos
     {
         get 
         {
             if (string.IsNullOrEmpty(Filter) || Filter == "all") 
-                return Todos;
+                return State.Todos;
 
             if (Filter == "active")
-                return Todos.Where(t => !t.Completed);
+                return State.Active;
 
-            return Todos.Where(t => t.Completed);
+            return State.Completed;
         }
     }
 
     public string Filter { get; set; }
-    
-    private void Remove(Todo todo)
-    {
-        Todos.Remove(todo);
-    }
 
-    private void ToggleAll(bool isChecked)
-    {
-        foreach (var td in Todos)
-        {
-            td.Completed = isChecked;
-        }
-    }
-
-    protected override void OnParametersSet()
-    {
-        Todos.CollectionChanged += (s,e) => this.StateHasChanged();
-    }
+    protected override void OnParametersSet() =>
+        State.OnChange += StateHasChanged;
 }

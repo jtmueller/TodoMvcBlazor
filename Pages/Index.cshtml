@@ -1,22 +1,11 @@
 ﻿@page "/"
 @page "/{Filter}"
+@inject AppState state
 
-<TodoInput OnNewTodo=@AddTodo />
-<TodoList Todos=@Todos Filter=@Filter />
-<TodoFooter Todos=@Todos Filter=@Filter />
+<TodoInput OnNewTodo=@state.AddTodo />
+<TodoList State=@state Filter=@Filter />
+<TodoFooter State=@state Filter=@Filter />
 
 @functions {
-    private ObservableCollection<Todo> Todos { get; } = new ObservableCollection<Todo>();
-
     public string Filter { get; set; }
-
-    private void AddTodo(string text)
-    {
-        Todos.Add(new Todo { Text = text });
-    }
-
-    protected override void OnInit()
-    {
-        Console.WriteLine(Filter);
-    }
 }

@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Blazor.Browser.Rendering;
 using Microsoft.AspNetCore.Blazor.Browser.Services;
+using Microsoft.Extensions.DependencyInjection;
 using System;
+using TodoMvcBlazor.Services;
 
 namespace TodoMvcBlazor
 {
@@ -8,9 +10,9 @@ namespace TodoMvcBlazor
     {
         static void Main(string[] args)
         {
-            var serviceProvider = new BrowserServiceProvider(configure =>
+            var serviceProvider = new BrowserServiceProvider(services =>
             {
-                // Add any custom services here
+                services.AddSingleton<AppState>();
             });
 
             new BrowserRenderer(serviceProvider).AddComponent<App>("app");

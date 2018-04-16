@@ -2,7 +2,7 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 
-namespace TodoMvcBlazor.Models
+namespace TodoMvcBlazor.Services
 {
     public static class Extensions
     {
