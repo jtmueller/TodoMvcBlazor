@@ -45,5 +45,9 @@
     <app>Loading...</app>
 
     <script type="blazor-boot"></script>
+    <script>
+        Blazor.registerFunction('loadTodos', () => localStorage.getItem('todos'));
+        Blazor.registerFunction('saveTodos', todos => localStorage.setItem('todos', todos));
+    </script>
 </body>
 </html>
