@@ -7,7 +7,6 @@
     <base href="https://jtmueller.github.io/TodoMvcBlazor/">
     <link rel="stylesheet" href="css/todomvc-common.css">
     <link rel="stylesheet" href="css/todomvc-app.css">
-    <!-- CSS overrides - remove if you don't need it -->
     <link rel="stylesheet" href="css/app.css">
 
     <!-- Start Single Page Apps for GitHub Pages -->
@@ -45,5 +44,9 @@
 <body>
     <app>Loading...</app>
 
-    <script src="_framework/blazor.js" main="TodoMvcBlazor.dll" entrypoint="TodoMvcBlazor.Program::Main" references="Microsoft.AspNetCore.Blazor.Browser.dll,Microsoft.AspNetCore.Blazor.dll,Microsoft.Extensions.DependencyInjection.Abstractions.dll,Microsoft.Extensions.DependencyInjection.dll,mscorlib.dll,netstandard.dll,System.Core.dll,System.Diagnostics.StackTrace.dll,System.dll,System.Globalization.Extensions.dll,System.Net.Http.dll,System.Runtime.Serialization.Primitives.dll,System.Security.Cryptography.Algorithms.dll" linker-enabled="true"></script></body>
+    <script src="_framework/blazor.js" main="TodoMvcBlazor.dll" entrypoint="TodoMvcBlazor.Program::Main" references="Microsoft.AspNetCore.Blazor.Browser.dll,Microsoft.AspNetCore.Blazor.dll,Microsoft.Extensions.DependencyInjection.Abstractions.dll,Microsoft.Extensions.DependencyInjection.dll,mscorlib.dll,netstandard.dll,System.Core.dll,System.Diagnostics.StackTrace.dll,System.dll,System.Globalization.Extensions.dll,System.Net.Http.dll,System.Runtime.Serialization.Primitives.dll,System.Security.Cryptography.Algorithms.dll" linker-enabled="true"></script>    <script>
+        Blazor.registerFunction('loadTodos', () => localStorage.getItem('todos'));
+        Blazor.registerFunction('saveTodos', todos => localStorage.setItem('todos', todos));
+    </script>
+</body>
 </html>
