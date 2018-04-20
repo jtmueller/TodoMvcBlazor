@@ -14,7 +14,7 @@
             </li>
         </ul>
         @if (State.Completed.Any()) {
-            <button class="clear-completed" @onclick(State.ClearCompleted)>Clear completed</button>
+            <button class="clear-completed" onclick=@State.ClearCompleted>Clear completed</button>
         }
     </footer>
 }

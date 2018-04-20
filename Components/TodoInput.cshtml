@@ -4,7 +4,7 @@
 
 <header class="header">
     <h1>todos</h1>
-    <input class="new-todo" placeholder="What needs to be done?" autofocus value=@Text @onchange(v => AddTodo((string)v))>
+    <input class="new-todo" placeholder="What needs to be done?" autofocus value=@Text onchange=@(e => AddTodo((string)e.Value)) />
 </header>
 
 @functions {
